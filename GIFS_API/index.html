@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mixed Index</title>
+  <style>
+    /* You can combine styles from both indexes here */
+    @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+    /* Include additional stylesheets if needed */
+    @import url('/assets/css/style.css');
+  </style>
+  <script src="https://kit.fontawesome.com/f4b397662f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="root">
+    <!-- Place any React content or components here -->
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>GIFs</h1>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Buscar GIFs">
+        <button id="searchBtn">Buscar</button>
+      </div>
+    </header>
+    <div class="gif-container" id="gifContainer">
+      <!-- Tarjetas de GIFs -->
+      <div class="gif-item">
+        <img src="/assets/image/giphy1.gif" alt="Placeholder">
+      </div>
+      <!-- Add more GIF items as needed -->
+      <!-- Fin de las tarjetas de GIFs -->
+    </div>
+    <div class="pagination">
+      <button id="prevBtn" class="pagination-btn">Previous page</button>
+      <button id="nextBtn" class="pagination-btn">Next page</button>
+    </div>
+    <footer>
+      <div class="social-icons">
+        <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Include your JavaScript files -->
+  <script type="module" src="/src/main.jsx"></script>
+  <script src="/assets/javascript/index.js"></script>
+</body>
+
+</html>
