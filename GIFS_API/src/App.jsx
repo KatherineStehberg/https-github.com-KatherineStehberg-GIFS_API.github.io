@@ -1,40 +1,59 @@
-import React from 'react';
-import './App.css'; 
-import './style.css'; 
+import React, { useState, useEffect } from 'react';
+import Buscador from './Buscador';
 
-function LandingPage() {
+const GIPHY_API_KEY = 'TMujM2xnvnTUYOBkDzKS5D3iLqLOG05T'; // Tu clave de API de GIPHY
+
+function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      handleSearch();
+    }
+  }, [searchQuery]);
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(
+        `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${GIPHY_API_KEY}`
+      );
+      if (!response.ok) {
+        throw new Error('Failed to fetch GIFs');
+      }
+      const data = await response.json();
+      setSearchResults(data.data);
+      setFilteredResults(data.data);
+    } catch (error) {
+      console.error('Error searching GIFs:', error);
+    }
+  };
+
   return (
     <div>
-      <div className="container">
-        <header>
-          <h1>GIFs</h1>
-          <div className="search-container">
-            <input type="text" id="search" placeholder="Buscar GIFs" />
-            <button id="searchBtn">Buscar</button>
-          </div>
-        </header>
-        <div className="gif-container" id="gifContainer">
-          {/* Tarjetas de GIFs */}
-          <div className="gif-item">
-            <img src="/assets/image/giphy1.gif" alt="Placeholder" />
-          </div>
-          {/* Añade el resto de las tarjetas de GIFs aquí */}
+      <header>
+        <h1>GIF Search</h1>
+        <div className="search-container">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search for GIFs"
+          />
+          <button onClick={handleSearch}>Search</button>
         </div>
-        <div className="pagination">
-          <button id="prevBtn" className="pagination-btn">Previous page</button>
-          <button id="nextBtn" className="pagination-btn">Next page</button>
-        </div>
-        <footer>
-          <div className="social-icons">
-            <a href="https://www.facebook.com"><i className="fab fa-facebook"></i></a>
-            <a href="https://twitter.com"><i className="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com"><i className="fab fa-linkedin"></i></a>
+      </header>
+      <Buscador results={searchResults} setFilteredResults={setFilteredResults} />
+      <div className="gif-container">
+        {filteredResults.map((gif) => (
+          <div className="gif-item" key={gif.id}>
+            <img src={gif.images.original.url} alt={gif.title} />
           </div>
-        </footer>
+        ))}
       </div>
     </div>
   );
 }
 
-export default LandingPage;
+export default App;
