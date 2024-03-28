@@ -1,4 +1,4 @@
-import React from 'react';
+iimport React from 'react';
 import './App.css'; 
 import './style.css'; 
 
@@ -37,12 +37,4 @@ function LandingPage() {
   );
 }
 
-function App() {
-  return (
-    <div className="App">
-      <LandingPage />
-    </div>
-  );
-}
-
-export default App;
+export default LandingPage;
