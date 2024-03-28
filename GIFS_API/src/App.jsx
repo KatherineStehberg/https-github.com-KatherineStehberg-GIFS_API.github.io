@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css'; // Importa tus estilos generales aquí
-import './style.css'; // Importa tus estilos específicos aquí
+import './App.css'; 
+import './style.css'; 
 
 function LandingPage() {
   return (
